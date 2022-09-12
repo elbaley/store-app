@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     backgroundColor: 'white',
-    color: 'green',
+    color: 'black',
     borderColor: 'rgba(0,0,0,0.2)',
     borderWidth: 2,
     height: 50,
