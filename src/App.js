@@ -6,15 +6,24 @@ import {
   TextInput,
   FlatList,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Product from './components/Product/Product';
 import productList from './products.json';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const App = () => {
+  const [filteredProducts, setFilteredProducts] = useState([...productList]);
   const renderProduct = ({item}) => {
     return <Product productData={item} />;
   };
+
+  function handleSearch(keyword) {
+    const searchResult = productList.filter(product =>
+      product.title.toLowerCase().includes(keyword.toLowerCase().trim()),
+    );
+
+    setFilteredProducts(searchResult);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,11 +34,8 @@ const App = () => {
 
       <View style={styles.searchContainer}>
         <TextInput
-          onChangeText={item => {
-            console.log('text changed', item);
-          }}
           onSubmitEditing={({nativeEvent}) => {
-            console.log('on submit', nativeEvent);
+            handleSearch(nativeEvent.text);
           }}
           placeholder="Search products..."
           placeholderTextColor="rgba(0,0,0,0.2)"
@@ -44,7 +50,7 @@ const App = () => {
           marginBottom: 30,
         }}
         horizontal={false}
-        data={productList}
+        data={filteredProducts}
         renderItem={renderProduct}
       />
     </SafeAreaView>
