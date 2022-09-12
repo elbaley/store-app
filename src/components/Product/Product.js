@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import styles from './Product.style';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-const Product = () => {
+const Product = ({productData}) => {
   const [icon, setIcon] = useState('heart-outline');
   return (
     <View style={styles.productContainer}>
@@ -12,15 +12,15 @@ const Product = () => {
           resizeMode="contain"
           style={styles.image}
           source={{
-            uri: 'https://m.media-amazon.com/images/I/71mUIp9oCXL._AC._SR360,460.jpg',
+            uri: productData.imgURL,
           }}
         />
         <View style={styles.priceContainer}>
-          <Text style={styles.price}>₺29999</Text>
+          <Text style={styles.price}>{productData.price}</Text>
         </View>
       </View>
       <View style={styles.infoContainer}>
-        <Text style={styles.name}>Xiaomi TWS Earbuds Speaker</Text>
+        <Text style={styles.name}>{productData.title}</Text>
         <View style={styles.iconContainer}>
           <Icon.Button
             style={styles.icon}

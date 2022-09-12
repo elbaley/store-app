@@ -5,8 +5,6 @@ import {
   SafeAreaView,
   TextInput,
   FlatList,
-  Button,
-  Dimensions,
 } from 'react-native';
 import React from 'react';
 import Product from './components/Product/Product';
@@ -15,7 +13,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const App = () => {
   const renderProduct = ({item}) => {
-    return <Product />;
+    return <Product productData={item} />;
   };
 
   return (
